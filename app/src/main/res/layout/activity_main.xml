@@ -33,14 +33,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orange"
+        app:layout_constraintBottom_toTopOf="@id/viewpager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/viewpager"
-        app:tabIconTint="@color/grey"
+        app:tabIconTint="@color/black_light"
+        app:tabIndicator="@drawable/custom_tab_indicator"
         app:tabIndicatorColor="@color/white"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="30dp"
+        app:tabIndicatorGravity="center"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/black"
         app:tabTextColor="@color/grey" />
 
     <androidx.viewpager2.widget.ViewPager2
