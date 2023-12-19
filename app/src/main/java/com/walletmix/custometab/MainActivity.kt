@@ -42,11 +42,6 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(binding.tab, binding.viewpager) { tab, position ->
              tab.text = weekDayArray[position]
-//            for (day in WeekDay.entries) {
-//                tab.text = day.name
-//            }
-
-
         }.attach()
     }
 }
