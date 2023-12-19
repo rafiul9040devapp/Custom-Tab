@@ -10,6 +10,16 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    enum class WeekDay {
+        SUNDAY,
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY
+    }
+
     companion object {
         val weekDayArray = arrayOf(
             "Sunday",
@@ -31,7 +41,12 @@ class MainActivity : AppCompatActivity() {
         binding.viewpager.adapter = adapter
 
         TabLayoutMediator(binding.tab, binding.viewpager) { tab, position ->
-            tab.text = weekDayArray[position]
+             tab.text = weekDayArray[position]
+//            for (day in WeekDay.entries) {
+//                tab.text = day.name
+//            }
+
+
         }.attach()
     }
 }
