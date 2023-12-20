@@ -17,7 +17,7 @@ data class ResponseQuotes(
     @SerializedName("_id")
     val id: String?,
     @SerializedName("length")
-    val length: Int?,
+    var length: Int?,
     @SerializedName("tags")
     val tags: List<String?>?
 )

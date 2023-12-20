@@ -24,6 +24,6 @@ class QuotesViewModel @Inject constructor(private var repository: QuotesReposito
     }
 
     fun setApiData(apiData: Response<List<ResponseQuotes>>) {
-        _responseQuotes.value = apiData
+        _responseQuotes.postValue(apiData)
     }
 }

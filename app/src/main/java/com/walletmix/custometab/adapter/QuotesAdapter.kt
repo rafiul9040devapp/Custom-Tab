@@ -1,5 +1,6 @@
 package com.walletmix.custometab.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -42,9 +43,11 @@ class QuotesAdapter :
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: QuotesViewHolder, position: Int) {
         getItem(position).let {
             holder.binding.tvTitle.text = it.content
+            holder.binding.tvAuthor.text = it.author
         }
     }
 }
