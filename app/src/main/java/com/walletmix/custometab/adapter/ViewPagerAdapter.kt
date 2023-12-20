@@ -4,13 +4,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.walletmix.custometab.fragments.FridayFragment
-import com.walletmix.custometab.fragments.MondayFragment
-import com.walletmix.custometab.fragments.SaturdayFragment
-import com.walletmix.custometab.fragments.SundayFragment
-import com.walletmix.custometab.fragments.ThursdayFragment
-import com.walletmix.custometab.fragments.TuesdayFragment
-import com.walletmix.custometab.fragments.WednesdayFragment
+import com.walletmix.custometab.view.fragments.FridayFragment
+import com.walletmix.custometab.view.fragments.MondayFragment
+import com.walletmix.custometab.view.fragments.SaturdayFragment
+import com.walletmix.custometab.view.fragments.SundayFragment
+import com.walletmix.custometab.view.fragments.ThursdayFragment
+import com.walletmix.custometab.view.fragments.TuesdayFragment
+import com.walletmix.custometab.view.fragments.WednesdayFragment
 
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :

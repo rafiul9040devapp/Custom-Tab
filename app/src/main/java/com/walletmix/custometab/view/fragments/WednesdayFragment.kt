@@ -1,4 +1,4 @@
-package com.walletmix.custometab.fragments
+package com.walletmix.custometab.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.walletmix.custometab.R
 import com.walletmix.custometab.databinding.FragmentWednesdayBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class WednesdayFragment : Fragment() {
 
     private lateinit var binding: FragmentWednesdayBinding
@@ -16,7 +17,7 @@ class WednesdayFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWednesdayBinding.inflate(inflater, container, false)
         return binding.root
     }
