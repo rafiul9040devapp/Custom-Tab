@@ -37,7 +37,8 @@ class MondayFragment : Fragment() {
         viewModel.productResponse.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 adapter.submitList(
-                    it.body()?.filter { responseQuotes -> responseQuotes.tags!!.contains("Famous Quotes") })
+                    it.body()
+                        ?.filter { responseQuotes -> responseQuotes.tags!!.contains("Famous Quotes") })
             }
         }
     }
