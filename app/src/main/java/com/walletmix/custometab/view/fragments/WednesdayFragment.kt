@@ -37,7 +37,7 @@ class WednesdayFragment : Fragment() {
             lifecycleScope.launch {
                 adapter.submitList(
                     it.body()
-                        ?.filter { responseQuotes -> responseQuotes.author == "Dr. Seuss" })
+                        ?.filter { responseQuotes -> responseQuotes.tags!!.contains("Famous Quotes") })
             }
         }
     }
