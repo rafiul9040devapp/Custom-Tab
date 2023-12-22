@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.walletmix.custometab.QuotesViewModel
 import com.walletmix.custometab.adapter.QuotesAdapter
 import com.walletmix.custometab.databinding.FragmentFridayBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FridayFragment : Fragment() {
@@ -23,6 +25,9 @@ class FridayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFridayBinding.inflate(inflater, container, false)
+        lifecycleScope.launch {
+            viewModel.getAllQuotesFromVM()
+        }
         adapter = QuotesAdapter()
         binding.tvTitle.adapter = adapter
         return binding.root
@@ -30,10 +35,6 @@ class FridayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState == null) {
-            viewModel.getAllQuotesFromVM()
-        }
-
         viewModel.quotes.observe(viewLifecycleOwner, Observer { quote ->
             adapter.submitList(quote.filter { responseQuotes -> responseQuotes.tags!!.contains("Famous Quotes") })
         })

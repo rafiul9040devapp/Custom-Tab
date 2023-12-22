@@ -27,6 +27,9 @@ class SaturdayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSaturdayBinding.inflate(inflater, container, false)
+        lifecycleScope.launch {
+            viewModel.getAllQuotesFromVM()
+        }
         adapter = QuotesAdapter()
         binding.tvTitle.adapter = adapter
         return binding.root
@@ -34,9 +37,6 @@ class SaturdayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState == null) {
-            viewModel.getAllQuotesFromVM()
-        }
 
         viewModel.quotes.observe(viewLifecycleOwner, Observer { quote ->
             adapter.submitList(quote.filter { responseQuotes -> responseQuotes.tags!!.contains("Famous Quotes") })

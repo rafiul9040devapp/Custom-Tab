@@ -18,5 +18,4 @@ class QuotesViewModel @Inject constructor(private var repository: QuotesReposito
             repository.getAllQuotesFromRepo()
         }
     }
-
 }

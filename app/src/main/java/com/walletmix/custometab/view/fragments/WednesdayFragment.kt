@@ -28,6 +28,9 @@ class WednesdayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWednesdayBinding.inflate(inflater, container, false)
+        lifecycleScope.launch {
+            viewModel.getAllQuotesFromVM()
+        }
         adapter = QuotesAdapter()
         binding.tvTitle.adapter = adapter
         return binding.root
@@ -35,8 +38,6 @@ class WednesdayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState == null) viewModel.getAllQuotesFromVM()
-
         viewModel.quotes.observe(viewLifecycleOwner, Observer { quote ->
             adapter.submitList(quote.filter { responseQuotes ->
                 responseQuotes.authorSlug!!.contains(
