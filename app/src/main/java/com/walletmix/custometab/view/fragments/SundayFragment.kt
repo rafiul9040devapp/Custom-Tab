@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.walletmix.custometab.QuotesViewModel
 import com.walletmix.custometab.R
@@ -27,18 +28,16 @@ class SundayFragment : Fragment() {
     ): View {
         binding = FragmentSundayBinding.inflate(inflater, container, false)
         adapter = QuotesAdapter()
-        viewModel.getAllQuotesFromVM()
         binding.tvTitle.adapter = adapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.productResponse.observe(viewLifecycleOwner) {
-            lifecycleScope.launch {
-                adapter.submitList(it.body())
-                viewModel.setApiData(it)
-            }
-        }
+        if (savedInstanceState == null) viewModel.getAllQuotesFromVM()
+
+        viewModel.quotes.observe(viewLifecycleOwner, Observer { quote ->
+            adapter.submitList(quote)
+        })
     }
 }
