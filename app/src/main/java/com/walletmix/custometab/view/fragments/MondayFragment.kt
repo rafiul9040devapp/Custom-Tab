@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.walletmix.custometab.QuotesViewModel
 import com.walletmix.custometab.R
 import com.walletmix.custometab.adapter.QuotesAdapter
@@ -23,13 +25,9 @@ class MondayFragment : Fragment() {
     private lateinit var adapter: QuotesAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentMondayBinding.inflate(inflater, container, false)
-//        lifecycleScope.launch {
-//            viewModel.getAllQuotesFromVM()
-//        }
         adapter = QuotesAdapter()
         binding.tvTitle.adapter = adapter
         return binding.root
@@ -37,9 +35,13 @@ class MondayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-            viewModel.getAllQuotesFromVM()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getAllQuotesFromVM()
+            }
         }
+
         viewModel.quotes.observe(viewLifecycleOwner, Observer { quote ->
             adapter.submitList(quote.filter { responseQuotes -> responseQuotes.tags!!.contains("Famous Quotes") })
         })
